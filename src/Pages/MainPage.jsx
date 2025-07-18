@@ -1,4 +1,4 @@
-import bg from '../bg.jpg'
+import bg from '../bg.jpg'  //작명의 영역
 import Card from '../components/card';
 
 
