@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { Route, Routes } from 'react-router-dom'
 import MainPage from './Pages/MainPage'
 import Header from './components/Header'
+import Detail from './Pages/Detail'
 
 function App() {
   const [fruit,setFrult] = useState(data);
@@ -15,6 +16,7 @@ function App() {
       <Routes>
         <Route path='/' element={<MainPage fruit={fruit}/>} />
         <Route path='/test' element={<h1>테스트페이지</h1>} />
+        <Route path='/detail/:id' element={<Detail fruit={fruit}/>}/>
       </Routes>
 
         {/* <div className="row">
