@@ -6,9 +6,15 @@ const test = createSlice({
   initialState: 'hello'
 })
 
+const item = createSlice({
+  name: 'item',
+  initialState: ['apple','banana']
+})
+
 export default configureStore({
   reducer: {
-    test: test.reducer
+    test: test.reducer,
+    item: item.reducer
   }
 
 })

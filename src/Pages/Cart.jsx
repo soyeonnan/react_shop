@@ -4,10 +4,12 @@ import { useSelector } from "react-redux";
 function Cart () {
 
   const test = useSelector((state)=>{
-    return state
+    return state.item
   })
 
+  const item = useSelector(state => state.item)
   console.log(test);
+  console.log(item);
 
   return(
     <Table>
