@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import bg from '../bg.jpg'  //작명의 영역
-import Card from '../components/card';
-import axios from 'axios';
+import Card from '../components/Card';
 
 
 function MainPage ({fruit} ){
