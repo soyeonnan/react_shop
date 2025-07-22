@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { Nav } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import TabContent from "../components/TabContent"
+import { useDispatch } from "react-redux";
+import { addItem } from "../redux/CartSlice";
 
 function Detail ({fruit}){
   const { id } = useParams();
@@ -14,6 +16,8 @@ function Detail ({fruit}){
 
 
   const selectedFruit = fruit[id];
+
+  const dispatch = useDispatch();
 
   // useEffect는 html이 전부 다 렌더링이 완료 된 후 실행이 된다.
   useEffect(()=>{
@@ -77,7 +81,18 @@ function Detail ({fruit}){
           <h4>{fruit[id].title}</h4>
           <p>{fruit[id].comtene}</p>
           <p>{fruit[id].price}</p>
-          <button className="btn btn-danger">주문하기</button>
+          <button className="btn btn-danger" onClick={()=>{
+            const item = {
+              id: id,
+              // id는 useparam에서 뽑아온 값
+              title: fruit[id].title,
+              count: 1          
+            }
+
+            dispatch( addItem(item) )
+            window.alert('장바구니에 추가 되었습니다.')
+            // 그냥 alert하면 오류가 떠서 앞에 window를 붙혀주면 됨
+          }}>주문하기</button>
         </div>
       </div>
 
