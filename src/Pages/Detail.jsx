@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import TabContent from "../components/TabContent"
 import { useDispatch } from "react-redux";
 import { addItem } from "../redux/CartSlice";
+import { setWatched } from "../redux/watchedSlice";
 
 function Detail ({fruit}){
   const { id } = useParams();
@@ -43,6 +44,34 @@ function Detail ({fruit}){
     console.log('useEffect 확인용 콘솔')
   },[num])
 
+  useEffect(()=>{
+    // 방금 들어온 상품의 id를 로컬스토리지에 추가
+    let watched = localStorage.getItem('watched');
+
+    // 문자열이라서 JSON을 이용해서 배열로 변경
+    watched = JSON.parse(watched);
+
+    // 3개 이상 들어가면 제거하는 작업 (pop이 그 역활)
+    // 이렇게 작업했더니 중복제거로 인해 2개만 남는 상황이 생김
+
+    // .includes : 해당 배열에 값이 있으면 true, 없으면 false
+    // 이미 최근 본 상품이 3개 일 때 새로운 걸 추가해야 하므로 기존거 하나 지우고 추가
+    // 개수로만 삭제를 하니까 중복된 걸 보게되면 문제가 생김
+    // 이미 들어있는 거면 안 지워도 됨 -> 없을때만 삭제를 하면 될 듯
+    if(watched.length === 3 && !watched.includes(id))
+      watched.pop();
+
+    watched = [id, ...watched]
+
+    // Set은 (map,set,list등) 중복을 허용 안 함 
+    watched = new Set(watched);
+    // Set은 배열이 아님 그래서 다시 배열 형태로 변환해야 함
+    watched = Array.from(watched);
+
+    localStorage.setItem('watched', JSON.stringify(watched));
+    dispatch( setWatched(watched) )
+
+  },[])
 
   if (!selectedFruit) {
     return <div>해당 상품이 없습니다.</div>

@@ -1,5 +1,6 @@
 import { configureStore, createSlice } from "@reduxjs/toolkit";
 import cart from "./CartSlice";
+import watched from "./watchedSlice";
 
 const test = createSlice({
   // 스테이트 이름, 값, 변경함수 등 넣을 수 있음
@@ -56,6 +57,7 @@ export default configureStore({
     cart: cart.reducer,
     num: num.reducer,
     obj: obj.reducer,
+    watched: watched.reducer,
 
   }
 

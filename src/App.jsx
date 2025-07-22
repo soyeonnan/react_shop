@@ -9,6 +9,7 @@ import About from './Pages/About'
 import styled from 'styled-components'
 import axios from 'axios'
 import Cart from './Pages/Cart'
+import WatchedProduct from './components/WatchedProduct'
 
 // stled-component 기본 사용법
 // const 컴포넌트이름지정 = styled.태그명`css속성`
@@ -46,8 +47,14 @@ function App() {
     },[])
   
   
+    useEffect(()=>{
+      localStorage.setItem('watched',JSON.stringify([]));
+    })
+
 
   return (
+
+
     
     <div className={style.container}> 
 
@@ -59,6 +66,7 @@ function App() {
         <Btn2 bg='yellowgreen'>버튼</Btn2>
       </Div> */}
 
+      <WatchedProduct fruit={fruit} />
 
       <Header/>
 
@@ -103,6 +111,7 @@ function App() {
             console.log(error)
           })
         }}>과일정보 받아오기</button>
+
 
         {/* <div className="row">
           {/* ``빽팁을 이용하면 이렇게 사용 */}
