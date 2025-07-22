@@ -8,6 +8,7 @@ import Detail from './Pages/Detail'
 import About from './Pages/About'
 import styled from 'styled-components'
 import axios from 'axios'
+import Cart from './Pages/Cart'
 
 // stled-component 기본 사용법
 // const 컴포넌트이름지정 = styled.태그명`css속성`
@@ -64,6 +65,9 @@ function App() {
       <Routes>
         <Route path='/' element={<MainPage fruit={fruit}/>} />
         <Route path='/test' element={<h1>테스트페이지</h1>} />
+
+        <Route path='/cart' element={<Cart/>} />
+        
         <Route path='/detail/:id' element={<Detail fruit={fruit}/>}/>
 
         <Route path='/about' element={<About/>} >
